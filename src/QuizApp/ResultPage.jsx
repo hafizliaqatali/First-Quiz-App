@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import Details from "./Details";
 function ResultPage(props) {
 
-  const [detailShow , setDetailShow] = useState(false)
+  const [detailShow , setDetailShow] = useState(false);
+
   return (
     <>
     {
@@ -21,9 +22,12 @@ function ResultPage(props) {
               </>
             )}
             <div className="result">
-              <p className="green">Your Score: {props.correctAns}</p>
               <p>Total Score: {props.totalScore}</p>
-              <p className="red">Wrong Answer: {props.wrongAns}</p>
+              {/* <input type="range" value={props.totalScore} max={props.totalScore} /> */}
+              <p className="green">Correct Answer: {( parseInt(props.correctAns) / parseInt(props.totalScore)) * 100} %</p>
+              <input type="range" onChange={()=> {}}  style={{  accentColor: "green"}} value={props.correctAns}  max={props.totalScore}/>
+              <p className="red">Wrong Answer:  {( parseInt(props.wrongAns) / parseInt(props.totalScore)) * 100} %</p>
+              <input type="range" onChange={()=> {}} style={{  accentColor: "red"}} value={props.wrongAns}  max={props.totalScore}/>
             </div>
             <div className="detail-btn">
               <button onClick={()=> setDetailShow(true)}>See Details</button>
